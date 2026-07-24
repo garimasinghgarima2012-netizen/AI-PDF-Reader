@@ -1,0 +1,12 @@
+pypdf2
+langchain-classic
+streamlit 
+python-dotenv 
+langchain 
+langchain-community 
+cassio 
+datasets 
+tiktoken 
+langchain-huggingface sentence-transformers
+langchain-ollama
+streamlit_pdf_viewer 
