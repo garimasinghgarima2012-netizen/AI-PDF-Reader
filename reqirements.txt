@@ -1,4 +1,4 @@
-pypdf2
+pypdf
 langchain-classic
 streamlit 
 python-dotenv 
