@@ -1,0 +1,20 @@
+# Environment variables and secrets
+.env
+details.txt
+.streamlit/secrets.toml
+
+# Virtual environments
+myenv*/
+venv/
+.venv/
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Uploaded / generated files
+uploaded.pdf
+*.pdf
+faiss_index/
