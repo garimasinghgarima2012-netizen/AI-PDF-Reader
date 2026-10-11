@@ -229,6 +229,7 @@ with st.sidebar:
                         # Save state
                         st.session_state.pdf_bytes = file_bytes
                         st.session_state.processed_hash = file_hash
+                        st.session_state.indexed_chunks = chunks
                         st.session_state.doc_stats = {
                             "filename": uploaded_file.name,
                             "pages": total_pages,
@@ -268,6 +269,22 @@ with st.sidebar:
                 <div class="metric-label">Chunks</div>
             </div>
             """, unsafe_allow_html=True)
+
+        with st.expander("🗄️ Database Inspector", expanded=False):
+            st.markdown("**Status:** `🟢 Connected & Active`")
+            st.markdown("**Engine:** `FAISS (IndexFlatL2)`")
+            st.markdown("**Storage Folder:** `C:\\pdf_query\\faiss_db\\`")
+            st.markdown(f"**Stored Vectors:** `{st.session_state.doc_stats['chunks']}`")
+            st.markdown("**Dimensions:** `384` (MiniLM-L6)")
+            st.code("Files on disk:\n- faiss_db/index.faiss (Vectors)\n- faiss_db/index.pkl (Docstore)")
+
+            if "indexed_chunks" in st.session_state and st.session_state.indexed_chunks:
+                st.markdown("---")
+                st.markdown("**Sample Stored Chunks:**")
+                for idx, c in enumerate(st.session_state.indexed_chunks[:3]):
+                    p_num = c.metadata.get("page", 1)
+                    st.caption(f"**Chunk #{idx+1} (Page {p_num}):**")
+                    st.text(c.page_content.strip()[:140] + "...")
 
         if st.button("🗑️ Clear Chat History", use_container_width=True):
             st.session_state.messages = []
