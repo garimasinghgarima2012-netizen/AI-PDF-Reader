@@ -18,3 +18,7 @@ __pycache__/
 uploaded.pdf
 *.pdf
 faiss_index/
+
+# Presentation files
+*.pptx
+~$*
